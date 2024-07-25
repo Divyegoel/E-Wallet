@@ -1,10 +1,21 @@
+import { useNavigate } from "react-router-dom"
+import { Dashboard } from "../pages/Dashboard";
 
 export const Appbar = ({name}) => {
+    const navigate = useNavigate();
     return <div className="shadow h-14 flex justify-between">
         <div className="flex flex-col justify-center h-full ml-4">
             Wallet App
         </div>
         <div className="flex">
+            <div className="flex flex-col justify-center h-full mr-3 mt-1">
+            <button type="button" onClick={()=>{
+                 localStorage.removeItem("userId")
+                 localStorage.removeItem("token")
+                     navigate("/")
+            }} class="text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-800 dark:hover:bg-blue-700 dark:focus:ring-blue-700 dark:border-blue-700"> Sign Out</button>
+
+            </div>
             <div className="flex flex-col justify-center h-full mr-3">
                 Hello
             </div>

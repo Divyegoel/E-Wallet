@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react"
 import axios from "axios";
 
-export const Balance = () => {
+export const Balance = ({onClose,pop_func}) => {
     const [amount,setAmount] = useState(0);
     const token = localStorage.getItem("token");
+    if(!token) return null;
     useEffect(() => {
         axios.get("http://localhost:3000/api/v1/account/balance",{
             headers: {
@@ -20,6 +21,8 @@ export const Balance = () => {
               console.log(error.response.data);
               console.log(error.response.status);
               console.log(error.response.headers);
+              pop_func(error.response.status,error.response.data.message);
+              onClose();
             } else if (error.request) {
               // The request was made but no response was received
               // `error.request` is an instance of XMLHttpRequest in the browser and an instance of

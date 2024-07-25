@@ -36,9 +36,19 @@ const Homepage = () => {
           </h1>
           <div className="flex-col-reverse justify-normal">
           <button type="button"  onClick={()=>{
-               navigate("/signin");}}className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-7 py-2.5  me-2 mb-2 mr-7  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Sign In</button>
+                if(localStorage.getItem("token")){
+                  navigate("/dashboard");
+                }else{
+                  navigate("/signin")
+                }
+              ;}}className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-7 py-2.5  me-2 mb-2 mr-7  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Sign In</button>
           <button type="button"   onClick={()=>{
-               navigate("/signup");
+                   if(localStorage.getItem("token")){
+                    navigate("/dashboard");
+                  }else{
+                    navigate("/signup");
+                  }
+              
             }}className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-7 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Sign Up</button>
           </div>
          

@@ -1,7 +1,8 @@
 import { useSearchParams } from 'react-router-dom';
 import axios from "axios";
 import { useState } from 'react';
-export const SendMoney = () => {
+
+export const SendMoney = ({onClose,pop_func}) => {
     const [searchParams] = useSearchParams();
     const id = searchParams.get("id");
     const name = searchParams.get("name");
@@ -53,6 +54,11 @@ export const SendMoney = () => {
                                 Authorization: "Bearer " + localStorage.getItem("token")
                             }
                         }).then((response)=>{
+                            console.log(response.status);
+                            if(response.status == 200){
+                                pop_func("Success!!","Your money is sent securely to "+name);
+                                onClose();
+                            }
                         }) .catch(function (error) {
                             if (error.response) {
                               // The request was made and the server responded with a status code
@@ -60,6 +66,9 @@ export const SendMoney = () => {
                               console.log(error.response.data);
                               console.log(error.response.status);
                               console.log(error.response.headers);
+                              pop_func(error.response.status,error.response.data.message);
+                              onClose();
+                              
                             } else if (error.request) {
                               // The request was made but no response was received
                               // `error.request` is an instance of XMLHttpRequest in the browser and an instance of

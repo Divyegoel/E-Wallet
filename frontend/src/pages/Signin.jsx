@@ -8,7 +8,7 @@ import axios from "axios"
 import React from "react"
 import { useNavigate } from "react-router-dom"
 
-export const Signin = () => {
+export const Signin = ({pop_func,onClose}) => {
     const [Password,setPassword] = useState("");
     const [Email,setEmail] = useState("");
     const navigate = useNavigate();
@@ -41,6 +41,8 @@ export const Signin = () => {
                   console.log(error.response.data);
                   console.log(error.response.status);
                   console.log(error.response.headers);
+                  pop_func(error.response.status,error.response.data.message);
+                  onClose();
                 } else if (error.request) {
                   // The request was made but no response was received
                   // `error.request` is an instance of XMLHttpRequest in the browser and an instance of

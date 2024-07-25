@@ -7,7 +7,7 @@ import { SubHeading } from "../components/SubHeading"
 import axios from "axios";
 import { useNavigate } from "react-router-dom"
 
-export const Signup = () => {
+export const Signup = ({pop_func,onClose}) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
@@ -27,12 +27,17 @@ export const Signup = () => {
         }} placeholder="Doe" label={"Last Name"} />
         <InputBox onChange={e => {
           setUsername(e.target.value);
-        }} placeholder="harkirat@gmail.com" label={"Email"} />
+        }} placeholder="example123@gmail.com" label={"Email"} />
         <InputBox onChange={(e) => {
           setPassword(e.target.value)
         }} placeholder="123456" label={"Password"} />
         <div className="pt-4">
           <Button onClick={async () => {
+             if(localStorage.getItem("token")){
+              navigate("/dashboard");
+            }else{
+               
+            }
             const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
               username,
               firstName,
@@ -45,6 +50,8 @@ export const Signup = () => {
                 console.log(error.response.data);
                 console.log(error.response.status);
                 console.log(error.response.headers);
+                pop_func(error.response.status,error.response.data.message);
+                onClose();
               } else if (error.request) {
                 // The request was made but no response was received
                 // `error.request` is an instance of XMLHttpRequest in the browser and an instance of

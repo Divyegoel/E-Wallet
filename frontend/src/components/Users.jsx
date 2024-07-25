@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 
-export const Users = () => {
+export const Users = ({pop_func,onClose}) => {
     // Replace with backend call
     const [users, setUsers] = useState([]);
     const [filter, setFilter] = useState("");
@@ -20,6 +20,8 @@ export const Users = () => {
                   console.log(error.response.data);
                   console.log(error.response.status);
                   console.log(error.response.headers);
+                  pop_func(error.response.status,error.response.data.message);
+                  onClose();
                 } else if (error.request) {
                   // The request was made but no response was received
                   // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
