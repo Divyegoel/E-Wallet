@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { Dashboard } from "../pages/Dashboard";
 
-export const Appbar = ({name}) => {
+export const Appbar = () => {
     const navigate = useNavigate();
     return <div className="shadow h-14 flex justify-between">
         <div className="flex flex-col justify-center h-full ml-4">
