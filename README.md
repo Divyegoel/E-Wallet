@@ -41,7 +41,7 @@ To get started with the E-Wallet application, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/Vidit45/E-Wallet.git
+   git clone https://github.com/Divyegoel/E-Wallet.git
    ```
 
 ## Navigate into the project directory:
